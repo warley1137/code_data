@@ -1,49 +1,55 @@
 import 'package:flutter/material.dart';
-import 'product_screen.dart';
-import 'client_products_screen.dart';
-import 'borrowed_products_screen.dart';
-import 'profile_screen.dart';
+import 'equipamento_screen.dart';
+import 'locacao_screen.dart';
+import 'homologacao_screen.dart';
+import 'perfil_screen.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    LocacaoScreen(),
+    EquipamentoScreen(),
+    HomologacaoScreen(),
+    PerfilScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Gerenciador de Estoque')),
-      body: ListView(
-        children: [
-          ListTile(
-            title: Text('Produtos'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (ctx) => ProductScreen(),
-              ));
-            },
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            label: 'Locação',
           ),
-          ListTile(
-            title: Text('Produtos por Cliente'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (ctx) => ClientProductsScreen(),
-              ));
-            },
+          BottomNavigationBarItem(
+            icon: Icon(Icons.inventory),
+            label: 'Estoque',
           ),
-          ListTile(
-            title: Text('Produtos Emprestados'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (ctx) => BorrowedProductsScreen(),
-              ));
-            },
+          BottomNavigationBarItem(
+            icon: Icon(Icons.check_circle),
+            label: 'Homologação',
           ),
-          ListTile(
-            title: Text('Perfil'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (ctx) => ProfileScreen(),
-              ));
-            },
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Perfil',
           ),
         ],
+        selectedItemColor: Color(0xFF0E6600),
+        unselectedItemColor: Colors.grey,
       ),
     );
   }
