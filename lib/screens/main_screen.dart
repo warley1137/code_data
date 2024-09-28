@@ -13,8 +13,8 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    LocacaoScreen(),
     EquipamentoScreen(),
+    LocacaoScreen(),
     HomologacaoScreen(),
     PerfilScreen(),
   ];
@@ -31,14 +31,15 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         items: [
+                    BottomNavigationBarItem(
+            icon: Icon(Icons.inventory),
+            label: 'Estoque',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment),
             label: 'Locação',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.inventory),
-            label: 'Estoque',
-          ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.check_circle),
             label: 'Homologação',
