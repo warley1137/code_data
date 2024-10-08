@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^0.13.5
   provider: ^6.0.0 # Adicionando provider
   sqflite: ^2.0.0  # Adicionando sqflite para persistência de dados
   path: ^1.8.0    # Adicionando path para gerenciar caminhos
